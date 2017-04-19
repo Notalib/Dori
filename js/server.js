@@ -50,7 +50,7 @@ var Constructor = function(path, uploadKey) {
     } else if(req.method === 'POST') {
 
       if(uploadKey) {
-        if(req.param('key') !== uploadKey) {
+        if(req.query.key !== uploadKey) {
           res.status(401).send("Wrong upload key provided\r\n");
           return;
         }
