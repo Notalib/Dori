@@ -8,6 +8,7 @@ var express = require('express'),
     sprintf = require('sprintf').sprintf,
     normalize = require('path').normalize,
     join = require('path').join,
+    morgan = require('morgan'),
     Tests = require('./tests.js');
 
 var Constructor = function(path, uploadKey) {
@@ -25,6 +26,7 @@ var Constructor = function(path, uploadKey) {
   path = matches[1];
 
   var app = express();
+  app.use(morgan('combined'));
   app.use(mount, function(req, res, next) {
     if(req.method === 'GET') {
       if(req.url === '/') {
