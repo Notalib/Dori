@@ -10,6 +10,7 @@ if(!options.key) {
 }
 
 var port = options.port || 80;
+var timeout = options.timeout || 2 * 60 * 1000;
 
 process.on('uncaughtException', function(err) {
   if(err.errno === 'EACCES') {
@@ -22,4 +23,6 @@ process.on('uncaughtException', function(err) {
   }
 });
 
-server.listen(port);
+server.listen(port, function() {
+  this.timeout = timeout;
+});
